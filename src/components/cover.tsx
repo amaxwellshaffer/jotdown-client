@@ -14,8 +14,8 @@ class Cover extends React.Component {
                 <TextField id="standard" label="password" />
                 <br />
                 <br />
-                <Button onClick={() => { alert('clicked') }} variant="outlined">login</Button>
-                <Button onClick={() => { alert('clicked') }} variant="outlined">register</Button>
+                <Button onClick={() => { alert('clicked') }} variant="outlined" size="small">login</Button> &nbsp;
+                <Button onClick={() => { alert('clicked') }} variant="outlined" size="small">register</Button>
             </div>
         )
     }

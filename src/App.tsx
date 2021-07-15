@@ -5,6 +5,9 @@ import {Route, Switch} from "react-router-dom";
 
 import Cover from "./components/cover";
 import Inside from "./components/inside";
+import Backcover from "./components/backCover";
+import Footer from "./components/footer";
+
 class App extends React.Component {
 
 
@@ -17,7 +20,10 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={Cover} />
           <Route exact path="/journal" component={Inside} />
+          <Route exact path="/about" component={Backcover} />
         </Switch>
+
+        <Footer />
 
         </div>
       </div>

@@ -4,12 +4,12 @@
   text-align: center;
 }
 
-.main {
+/* .main-div {
    display: flex;
    align-items: center;
    margin: auto;
    
-  }
+  } */
   
 .cover {
   box-sizing: border-box;
@@ -18,7 +18,8 @@
   margin: auto;
   margin-top: 50px;
   background-color: #ACAE8C;
-  border: 0px solid #ACAE8C;    border-radius: 0px 40px 40px 0px;
+  border: 0px solid #ACAE8C;    
+  border-radius: 0px 40px 40px 0px;
   padding-top: 150px;
   font-family: 'Montserrat', sans-serif;
   color: white;
@@ -28,3 +29,49 @@
   text-decoration: line-through;
 }
 
+.backCover {
+  box-sizing: border-box;
+  width: 450px;
+  height: 600px;
+  margin: auto;
+  margin-top: 50px;
+  background-color: #ACAE8C;
+  border: 0px solid #ACAE8C;    
+  border-radius: 40px 0px 0px 40px;
+  padding-top: 150px;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
+.footer {
+  color: white;
+}
+
+.inside {
+  display: flex;
+  box-sizing: border-box;
+  height: 600px;
+  width: 900px;
+  margin:auto;
+  margin-top: 50px;
+}
+
+.leftPage{
+  box-sizing: border-box;
+  width: 450px;
+  height: 600px;
+  background-color: #E8D2A1;
+  border: 0px solid #E8D2A1;
+  border-radius: 40px 0px 0px 40px;
+}
+
+.rightPage{
+  box-sizing: border-box;
+  width: 450px;
+  height: 600px;
+  background-color: royalblue;
+  border: 0px solid #E8D2A1;
+  border-radius: 0px 40px 40px 0px;
+}
