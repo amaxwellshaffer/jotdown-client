@@ -8,7 +8,44 @@ import Inside from "./components/inside";
 import Backcover from "./components/backCover";
 import Footer from "./components/footer";
 
-class App extends React.Component {
+interface IProps { 
+};
+interface IState { 
+  sessionToken: (string | null), 
+  isAdmin: (boolean | null),
+ 
+ };
+class App extends React.Component <IProps, IState> {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      sessionToken: '',
+      isAdmin: false
+    };
+  }
+
+  //set session token if there is one
+  componentDidMount() {
+    if (localStorage.getItem('token')){
+      this.setState({sessionToken: localStorage.getItem('token')})
+    };
+    console.log('checking for token');
+  }
+
+  updateToken = (newToken: string) => {
+    localStorage.setItem('token', newToken);
+    this.setState({sessionToken: newToken});
+    console.log(newToken);
+  };
+
+  clearToken = () => {
+    localStorage.clear();
+    this.setState({sessionToken: ''});
+  }
+
+  
+ 
 
 
   render() {
@@ -18,12 +55,12 @@ class App extends React.Component {
         {/* <h1>Hello JotDown</h1> */}
       
         <Switch>
-          <Route exact path="/" component={Cover} />
+          <Route exact path="/" render={() => <Cover updateToken={this.updateToken} />} />
           <Route exact path="/journal" component={Inside} />
           <Route exact path="/about" component={Backcover} />
         </Switch>
 
-        <Footer />
+        <Footer clearToken={this.clearToken}/>
 
         </div>
       </div>

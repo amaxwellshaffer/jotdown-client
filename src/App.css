@@ -75,3 +75,11 @@
   border: 0px solid #E8D2A1;
   border-radius: 0px 40px 40px 0px;
 }
+
+.right-top {
+  background-color: seagreen;
+}
+
+.right-bottom {
+  background-color:thistle;
+}
