@@ -72,11 +72,19 @@
   border-radius: 40px 0px 0px 40px;
 }
 
+.notepad {
+  box-sizing: border-box;
+  margin: auto;
+  padding-top: 15px;
+  width: 90%;
+}
+
 .rightPage{
   box-sizing: border-box;
   width: 450px;
   height: 600px;
   background-color: royalblue;
+  background: linear-gradient(90deg, rgba(143,130,100,1) 0%, rgba(182,168,137,1) 2%, rgba(232,210,161,1) 10%, rgba(237,210,161,1) 100%);
   border: 0px solid #E8D2A1;
   border-radius: 0px 40px 40px 0px;
 }
