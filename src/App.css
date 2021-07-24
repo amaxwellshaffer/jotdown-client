@@ -99,6 +99,30 @@
   padding-top: 15px;
   width: 90%;
   height: 300px;
+  overflow: auto;
+}
+
+.list-item {
+  display: inline-block;
+  width: 100%;
+}
+
+.list-item p {
+  display: inline;
+  text-align: left;
+}
+
+/* .item-checkbox {
+  float: left;
+} */
+
+.item-text {
+  float: left;
+}
+
+.item-buttons {
+  float: right;
+  display: inline;
 }
 
 .right-bottom {

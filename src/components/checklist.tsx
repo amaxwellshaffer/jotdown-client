@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, TextField, IconButton } from '@material-ui/core';
+import { Checkbox, TextField, IconButton, ButtonGroup } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -44,34 +44,56 @@ class Checklist extends React.Component<IProps, IState> {
 
         }).catch((err) => {
             console.log(err);
-            alert("not added")
+            //alert("not added")
+        })
+    };
+
+    deleteHandle = (itemId: number) => {
+
+        fetch(`${this.serverurl}/checklist/delete/${itemId}`, {
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `${localStorage.getItem("token")}`
+            })
+        }).then(
+            (response) => response.json()
+        ).then((json) => {
+            console.log(json);
+
+        }).catch((err) => {
+            console.log(err);
+            //alert("not deleted")
         })
     };
 
 
-     ListDisplay = () => {
+    ListDisplay = (item) => {
 
-        return this.props.checklist.map((item) => {
+        //console.log(item);
 
-            
-                console.log(item);
-                return (
-                    <div className="list-item">
+        return (
+            <div className="list-item">
+                <div className="item-text">
                     <Checkbox
+                        className="item-checkbox"
                         color="default"
                         checked={item.isDone}
                         inputProps={{ 'aria-label': 'checkbox with default color' }}
-                        />
-                    <p>{item.title}</p>
-                    <IconButton ><EditIcon fontSize="small" /></IconButton>
-                    <IconButton ><HighlightOffIcon fontSize="small" /></IconButton>
+                    />
+                <p>{item.title}</p>
                 </div>
-            )
-            
-            })
+                <div className="item-buttons">
+                    <form>
+                    <IconButton ><EditIcon fontSize="small" /></IconButton>
+                    <IconButton onClick={() => this.deleteHandle(item.id)} type="submit"><HighlightOffIcon fontSize="small" /></IconButton>
+                    </form>
+                    {/* <ButtonGroup size="small" className="item-buttons">
+                    </ButtonGroup> */}
+                </div>
         
-        
-
+            </div>
+        )
     };
 
     render() {
@@ -83,19 +105,24 @@ class Checklist extends React.Component<IProps, IState> {
             <div className="checklist">
                 {/* //greetings from checklist */}
                 <div className="new-item">
+                    <form>
+
                     <TextField
                         id="standard-size-small"
                         label="Add New item"
+                        autoComplete="off"
                         value={this.state.newItem}
                         size="small"
+                        inputProps={{ maxLength: 30 }}
                         onChange={e => this.setState({ newItem: e.target.value })} />
-                    <IconButton onClick={this.clickHandle}>
+                    <IconButton onClick={this.clickHandle} type="submit">
                         <AddIcon fontSize="small" />
                     </IconButton>
+                        </form>
                 </div>
 
                 <div className="list-of-items">
-                    {this.ListDisplay}
+                    {this.props.checklist.map(this.ListDisplay)}
                 </div>
             </div>
         )
