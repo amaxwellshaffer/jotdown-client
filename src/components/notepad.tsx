@@ -1,10 +1,10 @@
 import React from "react";
 //import TextField from '@material-ui/core/TextField';
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Snackbar } from "@material-ui/core";
 
-interface IProps { 
-    notes: (string | null ),
- };
+interface IProps {
+    notes: (string | null),
+};
 interface IState { notes: (string | null) };
 
 class Notepad extends React.Component<IProps, IState>{
@@ -19,8 +19,8 @@ class Notepad extends React.Component<IProps, IState>{
     serverurl: string = 'http://localhost:3005';
 
     clickHandle = () => {
-        console.log(this.state.notes);
-        
+        //console.log(this.state.notes);
+
         fetch(`${this.serverurl}/notepad/`, {
             method: 'PUT',
             body: JSON.stringify({ notes: this.state.notes }),
@@ -32,6 +32,7 @@ class Notepad extends React.Component<IProps, IState>{
             (response) => response.json()
         ).then((json) => {
             console.log(json);
+        
 
         }).catch((err) => {
             console.log(err);
@@ -46,10 +47,10 @@ class Notepad extends React.Component<IProps, IState>{
     // }
 
     render() {
-        
+
 
         //console.log(this.props.notes);
-        
+
         return (
             <div className="notepad">
                 <TextField

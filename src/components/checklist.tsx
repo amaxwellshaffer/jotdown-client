@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, TextField, IconButton, ButtonGroup } from '@material-ui/core';
+import { Checkbox, TextField, IconButton, ButtonGroup, Snackbar } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -41,10 +41,30 @@ class Checklist extends React.Component<IProps, IState> {
             (response) => response.json()
         ).then((json) => {
             console.log(json);
+            <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={true}
+            autoHideDuration={4000}
+            //onClose={handleClose}
+            message="Checklits Item Added"
+          />
 
         }).catch((err) => {
             console.log(err);
             //alert("not added")
+            <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={true}
+            autoHideDuration={4000}
+            //onClose={handleClose}
+            message="Item Not Added"
+          />
         })
     };
 
@@ -67,6 +87,37 @@ class Checklist extends React.Component<IProps, IState> {
         })
     };
 
+    checkBoxState = (isDone) => {
+        if(isDone === true) {
+            return(false)
+        }else{
+            return(true)
+        }
+    }
+
+
+    checkHandle = (item) => {
+
+
+        fetch(`${this.serverurl}/checklist/update/${item.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({isDone: this.checkBoxState(item.isDone) }),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `${localStorage.getItem("token")}`
+            })
+        }).then(
+            (response) => response.json()
+        ).then((json) => {
+            console.log(json);
+            //this.forceUpdate();
+
+        }).catch((err) => {
+            console.log(err);
+            //alert("not deleted")
+        })
+    };
+
 
     ListDisplay = (item) => {
 
@@ -75,17 +126,20 @@ class Checklist extends React.Component<IProps, IState> {
         return (
             <div className="list-item">
                 <div className="item-text">
+                    <form>
                     <Checkbox
                         className="item-checkbox"
                         color="default"
                         checked={item.isDone}
-                        inputProps={{ 'aria-label': 'checkbox with default color' }}
-                    />
+                        inputProps={{ 'aria-label': 'checkbox with default color', 'type': 'submit' }}
+                        onClick={() => this.checkHandle(item)}
+                        />
                 <p>{item.title}</p>
+                        </form>
                 </div>
                 <div className="item-buttons">
                     <form>
-                    <IconButton ><EditIcon fontSize="small" /></IconButton>
+                    {/* <IconButton><EditIcon fontSize="small" /></IconButton> */}
                     <IconButton onClick={() => this.deleteHandle(item.id)} type="submit"><HighlightOffIcon fontSize="small" /></IconButton>
                     </form>
                     {/* <ButtonGroup size="small" className="item-buttons">
