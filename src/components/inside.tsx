@@ -1,10 +1,12 @@
 import React from "react";
 import Notepad from "./notepad";
+import Checklist from "./checklist";
 
 interface IProps {};
 interface IState {
     notes: (string | null),
-    checklist: (string | boolean | number)[],
+    //checklist: (string | boolean | number)[],
+    checklist: {title: string, isDone: boolean, id: number}[],
     journal: (string | boolean | number)[],
     //reqHeaders: HeadersInit,
 };
@@ -42,7 +44,7 @@ class Inside extends React.Component <IProps, IState>{
                 this.setState({ notes: json.foundUser[0].notepad[0].notes });
                 this.setState({ checklist: json.foundUser[0].checklist });
                 this.setState({ journal: json.foundUser[0].logEntries });
-              console.log(this.state.notes);
+              console.log('from inside', this.state.checklist);
             });
         };
     
@@ -54,7 +56,9 @@ class Inside extends React.Component <IProps, IState>{
                     <Notepad notes={this.state.notes}/>
                 </div>
                 <div className="rightPage"> 
-                    <div className="right-top">top</div>
+                    <div className="right-top">
+                        <Checklist checklist={this.state.checklist}/>
+                    </div>
                     <div className="right-bottom">bottom</div>
                 </div>
 

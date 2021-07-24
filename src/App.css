@@ -89,8 +89,16 @@
   border-radius: 0px 40px 40px 0px;
 }
 
-.right-top {
+/* .right-top {
   background-color: seagreen;
+} */
+
+.checklist {
+  box-sizing: border-box;
+  margin: auto;
+  padding-top: 15px;
+  width: 90%;
+  height: 300px;
 }
 
 .right-bottom {
