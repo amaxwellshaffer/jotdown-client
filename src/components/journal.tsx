@@ -10,7 +10,7 @@ interface IProps {
     journal: { date: string, entry: string, id: number }[]
 
 };
-interface IState { newEntry: string, newDate: (string | null), setModalOpen: boolean };
+interface IState { newEntry: string, newDate: (string | null), setModalOpen: boolean, id: number | null };
 
 class Journal extends React.Component<IProps, IState>{
 
@@ -19,7 +19,8 @@ class Journal extends React.Component<IProps, IState>{
         this.state = {
             newEntry: '',
             newDate: `${Date()}`,
-            setModalOpen: false
+            setModalOpen: false,
+            id: null
         };
     }
 
@@ -28,8 +29,13 @@ class Journal extends React.Component<IProps, IState>{
         // console.log('from handledatechange', date);
     };
 
-    handleClickOpen = () => {
-        this.setState({ setModalOpen: true })
+    handleClickOpen = (item) => {
+        this.setState({ setModalOpen: true });
+        this.setState({ newDate: item.date });
+        this.setState({ newEntry: item.entry });
+        this.setState({ id: item.id });
+       // console.log(this.state);
+        
     };
 
     handleClickClose = () => {
@@ -62,7 +68,7 @@ class Journal extends React.Component<IProps, IState>{
 
     updateEntryHandle = (item) => {
 
-        fetch(`${this.serverurl}/captainslog/update/${item.id}`, {
+        fetch(`${this.serverurl}/captainslog/update/${item}`, {
             method: 'PUT',
             body: JSON.stringify({ date: this.state.newDate, entry: this.state.newEntry }),
             headers: new Headers({
@@ -98,14 +104,10 @@ class Journal extends React.Component<IProps, IState>{
             //alert("not deleted")
         })
     };
-
-    modal = () => {
-        
-    }
-
-
+    
+    
     ListDisplay = (item) => {
-
+        
         //console.log(item);
 
         return (
@@ -117,7 +119,7 @@ class Journal extends React.Component<IProps, IState>{
                 <div className="item-buttons">
                     <form>
                         <ButtonGroup size="small" className="item-buttons">
-                            <IconButton onClick={this.handleClickOpen}><EditIcon fontSize="small" />
+                            <IconButton onClick={() => this.handleClickOpen(item)}><EditIcon fontSize="small" />
                             </IconButton>
                             <Dialog open={this.state.setModalOpen} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
                                 <DialogContent>
@@ -132,24 +134,24 @@ class Journal extends React.Component<IProps, IState>{
                                                 //id="date-picker-inline"
                                                 //label="Date picker inline"
                                                 //defaultValue={item.date}
-                                                value={item.date}
+                                                value={this.state.newDate}
                                                 onChange={(date) => this.handleDateChange(`${date}`)}
-                                            // KeyboardButtonProps={{
-                                            //     'aria-label': 'change date',
-                                            // }}
-                                            />
+                                                // KeyboardButtonProps={{
+                                                    //     'aria-label': 'change date',
+                                                    // }}
+                                                    />
                                         </MuiPickersUtilsProvider>
 
                                         <TextField
                                             id="standard-size-small"
                                             label="Update Entry"
                                             autoComplete="off"
-                                            //defaultValue={item.entry}
+                                            defaultValue={this.state.newEntry}
                                             value={this.state.newEntry}
                                             size="small"
-                                            inputProps={{ maxLength: 30 }}
+                                            inputProps={{ maxLength: 30}}
                                             onChange={e => this.setState({ newEntry: e.target.value })} />
-                                        <IconButton type="submit" onClick={() => this.updateEntryHandle(item)}>
+                                        <IconButton type="submit" onClick={() => this.updateEntryHandle(this.state.id)}>
                                             <AddIcon fontSize="small" />
                                         </IconButton>
                                     </form>
