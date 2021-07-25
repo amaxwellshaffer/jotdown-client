@@ -22,7 +22,8 @@ class Checklist extends React.Component<IProps, IState> {
     constructor(props) {
         super(props)
         this.state = {
-            newItem: ''
+            newItem: '',
+
         };
     }
 
@@ -40,33 +41,14 @@ class Checklist extends React.Component<IProps, IState> {
         }).then(
             (response) => response.json()
         ).then((json) => {
-            console.log(json);
-            <Snackbar
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            open={true}
-            autoHideDuration={4000}
-            //onClose={handleClose}
-            message="Checklits Item Added"
-          />
+            console.log(json)
 
         }).catch((err) => {
             console.log(err);
             //alert("not added")
-            <Snackbar
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            open={true}
-            autoHideDuration={4000}
-            //onClose={handleClose}
-            message="Item Not Added"
-          />
         })
     };
+
 
     deleteHandle = (itemId: number) => {
 
@@ -88,10 +70,10 @@ class Checklist extends React.Component<IProps, IState> {
     };
 
     checkBoxState = (isDone) => {
-        if(isDone === true) {
-            return(false)
-        }else{
-            return(true)
+        if (isDone === true) {
+            return (false)
+        } else {
+            return (true)
         }
     }
 
@@ -101,7 +83,7 @@ class Checklist extends React.Component<IProps, IState> {
 
         fetch(`${this.serverurl}/checklist/update/${item.id}`, {
             method: 'PUT',
-            body: JSON.stringify({isDone: this.checkBoxState(item.isDone) }),
+            body: JSON.stringify({ isDone: this.checkBoxState(item.isDone) }),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `${localStorage.getItem("token")}`
@@ -127,25 +109,25 @@ class Checklist extends React.Component<IProps, IState> {
             <div className="list-item">
                 <div className="item-text">
                     <form>
-                    <Checkbox
-                        className="item-checkbox"
-                        color="default"
-                        checked={item.isDone}
-                        inputProps={{ 'aria-label': 'checkbox with default color', 'type': 'submit' }}
-                        onClick={() => this.checkHandle(item)}
+                        <Checkbox
+                            className="item-checkbox"
+                            color="default"
+                            checked={item.isDone}
+                            inputProps={{ 'aria-label': 'checkbox with default color', 'type': 'submit' }}
+                            onClick={() => this.checkHandle(item)}
                         />
-                <p>{item.title}</p>
-                        </form>
+                        <p>{item.title}</p>
+                    </form>
                 </div>
                 <div className="item-buttons">
                     <form>
-                    {/* <IconButton><EditIcon fontSize="small" /></IconButton> */}
-                    <IconButton onClick={() => this.deleteHandle(item.id)} type="submit"><HighlightOffIcon fontSize="small" /></IconButton>
+                        {/* <IconButton><EditIcon fontSize="small" /></IconButton> */}
+                        <IconButton onClick={() => this.deleteHandle(item.id)} type="submit"><HighlightOffIcon fontSize="small" /></IconButton>
                     </form>
                     {/* <ButtonGroup size="small" className="item-buttons">
                     </ButtonGroup> */}
                 </div>
-        
+
             </div>
         )
     };
@@ -161,23 +143,34 @@ class Checklist extends React.Component<IProps, IState> {
                 <div className="new-item">
                     <form>
 
-                    <TextField
-                        id="standard-size-small"
-                        label="Add New item"
-                        autoComplete="off"
-                        value={this.state.newItem}
-                        size="small"
-                        inputProps={{ maxLength: 30 }}
-                        onChange={e => this.setState({ newItem: e.target.value })} />
-                    <IconButton onClick={this.clickHandle} type="submit">
-                        <AddIcon fontSize="small" />
-                    </IconButton>
-                        </form>
+                        <TextField
+                            id="standard-size-small"
+                            label="Add New item"
+                            autoComplete="off"
+                            value={this.state.newItem}
+                            size="small"
+                            inputProps={{ maxLength: 30 }}
+                            onChange={e => this.setState({ newItem: e.target.value })} />
+                        <IconButton onClick={this.clickHandle} type="submit">
+                            <AddIcon fontSize="small" />
+                        </IconButton>
+                    </form>
                 </div>
 
                 <div className="list-of-items">
                     {this.props.checklist.map(this.ListDisplay)}
                 </div>
+
+                {/* <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.successOpen}
+                    autoHideDuration={4000}
+                    onClose={() => this.setState({successOpen: false})}
+                    message="Item Not Added"
+                /> */}
             </div>
         )
     }
