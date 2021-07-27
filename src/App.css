@@ -134,3 +134,23 @@
 /* .right-bottom {
   background-color:thistle;
 } */
+
+.footer-links {
+  font-family: 'Montserrat', sans-serif;
+  color: darkgray;
+  margin-top: 8px;
+}
+
+.footer-links :visited{
+  color: darkgray
+}
+
+.admin-page {
+  display: flex;
+  box-sizing: border-box;
+  height: 600px;
+  width: 900px;
+  margin:auto;
+  margin-top: 50px;
+  background-color: white;
+}

@@ -7,6 +7,7 @@ import Cover from "./components/cover";
 import Inside from "./components/inside";
 import Backcover from "./components/backCover";
 import Footer from "./components/footer";
+import AdminAccess from "./components/admin";
 
 interface IProps { 
 };
@@ -58,6 +59,7 @@ class App extends React.Component <IProps, IState> {
           <Route exact path="/" render={() => <Cover updateToken={this.updateToken} />} />
           <Route exact path="/journal" component={Inside} />
           <Route exact path="/about" component={Backcover} />
+          <Route exact path="/admin" component={AdminAccess} />
         </Switch>
 
         <Footer clearToken={this.clearToken}/>

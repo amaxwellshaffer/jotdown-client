@@ -151,7 +151,7 @@ class Checklist extends React.Component<IProps, IState> {
                             size="small"
                             inputProps={{ maxLength: 30 }}
                             onChange={e => this.setState({ newItem: e.target.value })} />
-                        <IconButton onClick={this.clickHandle} type="submit">
+                        <IconButton onClick={this.clickHandle} type="submit" >
                             <AddIcon fontSize="small" />
                         </IconButton>
                     </form>
