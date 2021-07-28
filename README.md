@@ -1,4 +1,16 @@
-# Getting Started with Create React App
+# JotDown
+
+JOTDOWN is a minimalist, multi-purpose Field Notes style journal designed to put fewer obstacles between thoughts in your head and words on a screen.
+Use the notes, checklist, and dated log to track personal projects, RPG characters, or anything else.
+Journaling is a simple concept. Keep it that way with JotDown.
+
+Built along with [this](https://github.com/amaxwellshaffer/jotdown-server) RESTful API server.
+
+&copy;2021 developed by [Max Shaffer](https://amaxwellshaffer.github.io/)
+
+
+
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -44,4 +56,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-# jotdown-client
+# jotdown-client -->
