@@ -35,14 +35,13 @@ class Journal extends React.Component<IProps, IState>{
         this.setState({ newEntry: item.entry });
         this.setState({ id: item.id });
        // console.log(this.state);
-        
     };
 
     handleClickClose = () => {
         this.setState({ setModalOpen: false });
-        console.log('from close button', this.state.setModalOpen);
-
+        //console.log('from close button', this.state.setModalOpen);
     };
+
 
     serverurl: string = 'http://localhost:3005';
 
@@ -58,7 +57,7 @@ class Journal extends React.Component<IProps, IState>{
         }).then(
             (response) => response.json()
         ).then((json) => {
-            console.log(json);
+           // console.log(json);
 
         }).catch((err) => {
             console.log(err);
@@ -78,7 +77,7 @@ class Journal extends React.Component<IProps, IState>{
         }).then(
             (response) => response.json()
         ).then((json) => {
-            console.log(json);
+            //console.log(json);
 
         }).catch((err) => {
             console.log(err);
@@ -97,7 +96,7 @@ class Journal extends React.Component<IProps, IState>{
         }).then(
             (response) => response.json()
         ).then((json) => {
-            console.log(json);
+            //console.log(json);
 
         }).catch((err) => {
             console.log(err);
@@ -209,7 +208,7 @@ class Journal extends React.Component<IProps, IState>{
                     </form>
                 </div>
                 <div className="list-of-items">
-                    {this.props.journal.map(this.ListDisplay)}
+                    {this.props.journal.sort((x, y) => +new Date(x.date) - +new Date(y.date)).map(this.ListDisplay)}
                 </div>
             </div>
         )

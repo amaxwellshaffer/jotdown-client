@@ -27,8 +27,8 @@ class Footer extends React.Component<IProps, IState> {
                     <Button onClick={this.props.clearToken} component={Link} to="/">Logout</Button>
                 </ButtonGroup> */}
 
-                <Link href="/" >home</Link> &nbsp;
-                <Link href="/about" >about</Link> &nbsp;
+                <Link href="/" >home</Link>&nbsp;|&nbsp; 
+                <Link href="/about" >about</Link>&nbsp;|&nbsp;   
                 <Link href="/" onClick={this.props.clearToken}>logout</Link>
                 {/* {() => this.needLogout} */}
             </div>

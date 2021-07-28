@@ -6,7 +6,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 interface IProps {
     //checklist: (string | boolean | number)[],
-    checklist: { title: string, isDone: boolean, id: number }[]
+    checklist: { title: string, isDone: boolean, id: number, createdAt: string }[]
     //checklist: {title: string, isDone: boolean, createdAt: string, id: number, updatedAt: string, userId: number}[],
 
 };
@@ -112,6 +112,7 @@ class Checklist extends React.Component<IProps, IState> {
                         <Checkbox
                             className="item-checkbox"
                             color="default"
+                            size="small"
                             checked={item.isDone}
                             inputProps={{ 'aria-label': 'checkbox with default color', 'type': 'submit' }}
                             onClick={() => this.checkHandle(item)}
@@ -158,7 +159,7 @@ class Checklist extends React.Component<IProps, IState> {
                 </div>
 
                 <div className="list-of-items">
-                    {this.props.checklist.map(this.ListDisplay)}
+                    {this.props.checklist.sort((x, y) => +new Date(x.createdAt) - +new Date(y.createdAt)).map(this.ListDisplay)}
                 </div>
 
                 {/* <Snackbar

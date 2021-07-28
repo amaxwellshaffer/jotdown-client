@@ -94,7 +94,7 @@ class Cover extends React.Component<IProps, IState> {
                     <h4>bells whistles distractions</h4>
                     <TextField id="standard" label="username" value={this.state.userName} onChange={e => this.setState({ userName: e.target.value })} />
                     <br />
-                    <TextField id="standard" label="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
+                    <TextField id="standard" label="password" type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
                     <br />
                     <br />
                     <Button onClick={this.loginUser} variant="outlined" size="small">login</Button> &nbsp;

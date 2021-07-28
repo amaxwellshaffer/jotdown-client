@@ -16,7 +16,7 @@
   width: 450px;
   height: 600px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
   background-color: #ACAE8C;
   background: linear-gradient(90deg, rgba(125,126,103,1) 0%, rgba(172,174,140,1) 10%, rgba(172,174,140,1) 100%);
   border-right: 5px solid #E8D2A1;    
@@ -36,7 +36,7 @@
   width: 450px;
   height: 600px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
   background-color: #ACAE8C;
   background: linear-gradient(270deg, rgba(125,126,103,1) 0%, rgba(172,174,140,1) 10%, rgba(172,174,140,1) 100%);
   border-left: 5px solid #E8D2A1;    
@@ -59,7 +59,7 @@
   height: 600px;
   width: 900px;
   margin:auto;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .leftPage{
@@ -139,6 +139,7 @@
   font-family: 'Montserrat', sans-serif;
   color: darkgray;
   margin-top: 8px;
+  margin-bottom: 5px;
 }
 
 .footer-links :visited{
@@ -153,4 +154,18 @@
   margin:auto;
   margin-top: 50px;
   background-color: white;
+}
+
+.user-list {
+  box-sizing: border-box;
+  width: 25%;
+  overflow: hidden;
+  border-right: 2px solid darkgray;
+}
+
+.user-data {
+  box-sizing: border-box;
+  padding-left: 50px;
+  overflow: hidden;
+  text-align: left;
 }
