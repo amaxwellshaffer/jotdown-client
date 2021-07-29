@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect } from 'react-router';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import APIURL from "../helpers/environment";
 
 interface IProps { updateToken: (param1: string) => void };
 interface IState { userName: string, password: string };
@@ -15,7 +16,7 @@ class Cover extends React.Component<IProps, IState> {
         };
     }
 
-    serverurl: string = 'http://localhost:3005';
+    serverurl: string = APIURL;
 
     //register User
     registerUser = (event) => {
@@ -47,11 +48,9 @@ class Cover extends React.Component<IProps, IState> {
                 (response) => response.json()
             ).then((data) => {
                 console.log(data);
-
                 this.props.updateToken(data.token);
                 console.log('updated token from [cover]');
 
-                //history.push("/profile");
             }).catch(err => console.log(err))
 
         } else {
@@ -72,7 +71,6 @@ class Cover extends React.Component<IProps, IState> {
             (response) => response.json()
         ).then((data) => {
             this.props.updateToken(data.token);
-            //history.push("/profile");
             console.log(`welcome back ${data.user.userName} from login function`);
 
         }).catch((err) => {

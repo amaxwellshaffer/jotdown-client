@@ -2,6 +2,7 @@ import React from "react";
 import Notepad from "./notepad";
 import Checklist from "./checklist";
 import Journal from "./journal";
+import APIURL from "../helpers/environment";
 
 interface IProps {};
 interface IState {
@@ -23,7 +24,7 @@ class Inside extends React.Component <IProps, IState>{
         };
     }
 
-    serverurl: string = 'http://localhost:3005';
+    serverurl: string = APIURL;
 
     componentDidMount(){
 

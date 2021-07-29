@@ -1,5 +1,6 @@
 import React from "react";
 import Link from '@material-ui/core/Link';
+import APIURL from "../helpers/environment";
 
 interface IProps { };
 interface IState {
@@ -27,7 +28,7 @@ class AdminAccess extends React.Component<IProps, IState>{
         };
     }
 
-    serverurl: string = 'http://localhost:3005';
+    serverurl: string = APIURL;
 
     componentDidMount() {
 

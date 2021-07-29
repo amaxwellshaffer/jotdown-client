@@ -1,21 +1,16 @@
 import React from 'react';
 import { Checkbox, TextField, IconButton, ButtonGroup, Snackbar } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
+//import EditIcon from '@material-ui/icons/Edit';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import APIURL from "../helpers/environment";
 
 interface IProps {
-    //checklist: (string | boolean | number)[],
     checklist: { title: string, isDone: boolean, id: number, createdAt: string }[]
-    //checklist: {title: string, isDone: boolean, createdAt: string, id: number, updatedAt: string, userId: number}[],
 
 };
-interface IState { newItem: string };
 
-// interface displayProps {
-//     title: string,
-//     isDone: boolean 
-// }
+interface IState { newItem: string };
 
 class Checklist extends React.Component<IProps, IState> {
 
@@ -27,7 +22,7 @@ class Checklist extends React.Component<IProps, IState> {
         };
     }
 
-    serverurl: string = 'http://localhost:3005';
+    serverurl: string = APIURL;
 
     clickHandle = () => {
 
@@ -162,16 +157,6 @@ class Checklist extends React.Component<IProps, IState> {
                     {this.props.checklist.sort((x, y) => +new Date(x.createdAt) - +new Date(y.createdAt)).map(this.ListDisplay)}
                 </div>
 
-                {/* <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.successOpen}
-                    autoHideDuration={4000}
-                    onClose={() => this.setState({successOpen: false})}
-                    message="Item Not Added"
-                /> */}
             </div>
         )
     }

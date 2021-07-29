@@ -1,6 +1,6 @@
 import React from "react";
-//import TextField from '@material-ui/core/TextField';
-import { TextField, Button, Snackbar } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
+import APIURL from "../helpers/environment";
 
 interface IProps {
     notes: (string | null),
@@ -16,7 +16,7 @@ class Notepad extends React.Component<IProps, IState>{
         };
     }
 
-    serverurl: string = 'http://localhost:3005';
+    serverurl: string = APIURL;
 
     clickHandle = () => {
         //console.log(this.state.notes);
@@ -40,14 +40,7 @@ class Notepad extends React.Component<IProps, IState>{
         })
     }
 
-
-    // componentDidMount() {
-    //     this.setState({notes: this.props.notes})
-    //     console.log('from notepad mount', this.props.notes); 
-    // }
-
     render() {
-
 
         //console.log(this.props.notes);
 

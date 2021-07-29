@@ -5,6 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns'
+import APIURL from "../helpers/environment";
 
 interface IProps {
     journal: { date: string, entry: string, id: number }[]
@@ -43,7 +44,7 @@ class Journal extends React.Component<IProps, IState>{
     };
 
 
-    serverurl: string = 'http://localhost:3005';
+    serverurl: string = APIURL;
 
     newEntryHandle = () => {
 
