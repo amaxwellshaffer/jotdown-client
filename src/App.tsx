@@ -31,7 +31,7 @@ class App extends React.Component <IProps, IState> {
     if (localStorage.getItem('token')){
       this.setState({sessionToken: localStorage.getItem('token')})
     };
-    console.log('checking for token');
+    console.log('checking for token', window.location.hostname);
   }
 
   updateToken = (newToken: string) => {
