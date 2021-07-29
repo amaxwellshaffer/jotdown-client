@@ -6,7 +6,7 @@ switch (window.location.hostname) {
         APIURL = 'http://localhost:3005'
         break
     case 'jotdownbook.herokuapp.com':
-        APIURL = 'https://jotdown-server.herokuapp.com/'
+        APIURL = 'https://jotdown-server.herokuapp.com'
 }
 
 export default APIURL
