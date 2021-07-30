@@ -154,7 +154,7 @@ class Checklist extends React.Component<IProps, IState> {
                 </div>
 
                 <div className="list-of-items">
-                    {this.props.checklist.sort((x, y) => +new Date(x.createdAt) - +new Date(y.createdAt)).map(this.ListDisplay)}
+                    {(this.props.checklist ?? []).sort((x, y) => +new Date(x.createdAt) - +new Date(y.createdAt)).map(this.ListDisplay)}
                 </div>
 
             </div>

@@ -209,7 +209,7 @@ class Journal extends React.Component<IProps, IState>{
                     </form>
                 </div>
                 <div className="list-of-items">
-                    {this.props.journal.sort((x, y) => +new Date(x.date) - +new Date(y.date)).map(this.ListDisplay)}
+                    {(this.props.journal ?? []).sort((x, y) => +new Date(x.date) - +new Date(y.date)).map(this.ListDisplay)}
                 </div>
             </div>
         )
