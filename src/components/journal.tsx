@@ -64,6 +64,8 @@ class Journal extends React.Component<IProps, IState>{
             console.log(err);
             //alert("not added")
         })
+
+        setTimeout(() => window.location.reload(), 500);
     };
 
     updateEntryHandle = (item) => {
@@ -84,6 +86,8 @@ class Journal extends React.Component<IProps, IState>{
             console.log(err);
             //alert("not added")
         })
+
+        setTimeout(() => window.location.reload(), 500);
     };
 
     deleteHandle = (itemId: number) => {
@@ -103,6 +107,8 @@ class Journal extends React.Component<IProps, IState>{
             console.log(err);
             //alert("not deleted")
         })
+
+        setTimeout(() => window.location.reload(), 500);
     };
     
     
@@ -151,7 +157,7 @@ class Journal extends React.Component<IProps, IState>{
                                             size="small"
                                             inputProps={{ maxLength: 30}}
                                             onChange={e => this.setState({ newEntry: e.target.value })} />
-                                        <IconButton type="submit" onClick={() => this.updateEntryHandle(this.state.id)}>
+                                        <IconButton  onClick={() => this.updateEntryHandle(this.state.id)}>
                                             <AddIcon fontSize="small" />
                                         </IconButton>
                                     </form>
@@ -163,7 +169,7 @@ class Journal extends React.Component<IProps, IState>{
 
                                 </DialogActions>
                             </Dialog>
-                            <IconButton onClick={() => this.deleteHandle(item.id)} type="submit"><HighlightOffIcon fontSize="small" /></IconButton>
+                            <IconButton onClick={() => this.deleteHandle(item.id)} ><HighlightOffIcon fontSize="small" /></IconButton>
                         </ButtonGroup>
                     </form>
                 </div>
@@ -203,7 +209,7 @@ class Journal extends React.Component<IProps, IState>{
                             size="small"
                             inputProps={{ maxLength: 30 }}
                             onChange={e => this.setState({ newEntry: e.target.value })} />
-                        <IconButton type="submit" onClick={this.newEntryHandle}>
+                        <IconButton  onClick={this.newEntryHandle}>
                             <AddIcon fontSize="small" />
                         </IconButton>
                     </form>

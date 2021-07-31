@@ -10,7 +10,7 @@ interface IProps {
 
 };
 
-interface IState { newItem: string };
+interface IState { newItem: string, reload: (number) };
 
 class Checklist extends React.Component<IProps, IState> {
 
@@ -18,6 +18,7 @@ class Checklist extends React.Component<IProps, IState> {
         super(props)
         this.state = {
             newItem: '',
+            reload: 0
 
         };
     }
@@ -36,12 +37,16 @@ class Checklist extends React.Component<IProps, IState> {
         }).then(
             (response) => response.json()
         ).then((json) => {
-            console.log(json)
+            console.log(json);
+            this.setState({reload: 1})
 
         }).catch((err) => {
             console.log(err);
             //alert("not added")
-        })
+        });
+
+        setTimeout(() => window.location.reload(), 500);
+
     };
 
 
@@ -57,11 +62,14 @@ class Checklist extends React.Component<IProps, IState> {
             (response) => response.json()
         ).then((json) => {
             console.log(json);
+            //this.setState({reload: 1})
 
         }).catch((err) => {
             console.log(err);
             //alert("not deleted")
-        })
+        });
+
+        setTimeout(() => window.location.reload(), 500);
     };
 
     checkBoxState = (isDone) => {
@@ -75,7 +83,6 @@ class Checklist extends React.Component<IProps, IState> {
 
     checkHandle = (item) => {
 
-
         fetch(`${this.serverurl}/checklist/update/${item.id}`, {
             method: 'PUT',
             body: JSON.stringify({ isDone: this.checkBoxState(item.isDone) }),
@@ -87,13 +94,21 @@ class Checklist extends React.Component<IProps, IState> {
             (response) => response.json()
         ).then((json) => {
             console.log(json);
-            //this.forceUpdate();
-
-        }).catch((err) => {
+        }
+        ).catch((err) => {
             console.log(err);
             //alert("not deleted")
         })
+
+        setTimeout(() => window.location.reload(), 500);
     };
+
+    // refreshComponent = () => {
+    //     this.setState(
+    //         {reload: 1},
+    //         () => this.setState({reload: 0})
+    //       )
+    // };
 
 
     ListDisplay = (item) => {
@@ -101,7 +116,7 @@ class Checklist extends React.Component<IProps, IState> {
         //console.log(item);
 
         return (
-            <div className="list-item">
+            <div className="list-item" >
                 <div className="item-text">
                     <form>
                         <Checkbox
@@ -109,19 +124,16 @@ class Checklist extends React.Component<IProps, IState> {
                             color="default"
                             size="small"
                             checked={item.isDone}
-                            inputProps={{ 'aria-label': 'checkbox with default color', 'type': 'submit' }}
+                            inputProps={{ 'aria-label': 'checkbox with default color' }}
                             onClick={() => this.checkHandle(item)}
                         />
                         <p>{item.title}</p>
                     </form>
                 </div>
                 <div className="item-buttons">
-                    <form>
-                        {/* <IconButton><EditIcon fontSize="small" /></IconButton> */}
-                        <IconButton onClick={() => this.deleteHandle(item.id)} type="submit"><HighlightOffIcon fontSize="small" /></IconButton>
+                    <form >
+                        <IconButton onClick={() => this.deleteHandle(item.id)}><HighlightOffIcon fontSize="small" /></IconButton>
                     </form>
-                    {/* <ButtonGroup size="small" className="item-buttons">
-                    </ButtonGroup> */}
                 </div>
 
             </div>
@@ -147,7 +159,7 @@ class Checklist extends React.Component<IProps, IState> {
                             size="small"
                             inputProps={{ maxLength: 30 }}
                             onChange={e => this.setState({ newItem: e.target.value })} />
-                        <IconButton onClick={this.clickHandle} type="submit" >
+                        <IconButton onClick={this.clickHandle} >
                             <AddIcon fontSize="small" />
                         </IconButton>
                     </form>
